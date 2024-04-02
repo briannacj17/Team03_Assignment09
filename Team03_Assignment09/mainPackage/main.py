@@ -19,9 +19,7 @@ if __name__ == "__main__":
 
         if choice == '1':
             REST_Countries()   
-           
-            
-        if choice.lower() == 'q':
+        elif choice.lower() == 'q':
             print("Exiting the program...")
             break  # Exit the loop and end the program
             

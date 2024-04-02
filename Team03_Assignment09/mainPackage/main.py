@@ -7,9 +7,9 @@
 # Brief Description of the assignment: Research API's and extract interesting data
 # Citations: https://restcountries.com/
 
-from mainPackage.restCountriesAPI import *
+from restCountriesAPI import *
 
 if __name__ == "__main__":
     REST_Countries()
-    print("Canada")
+    
     

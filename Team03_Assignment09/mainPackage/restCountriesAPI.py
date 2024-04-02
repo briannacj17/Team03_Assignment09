@@ -15,10 +15,13 @@ def REST_Countries():
         Connect to a API server
         @return: The server data about Canada
     '''
+    
+    #Take the user input
+    countryInput = input("What country do you wan't to know about? ")
 
     # Define the base URL and endpoint
     base_url = "restcountries.com"
-    endpoint = "/v3.1/name/canada"
+    endpoint = "/v3.1/name/" + countryInput
     
     # Establish connection to the server
     conn = http.client.HTTPSConnection(base_url)
@@ -29,28 +32,34 @@ def REST_Countries():
     # Get the response from the server
     response = conn.getresponse()
     
+    try:
     # Check if the request was successful (status code 200)
-    if response.status == 200:
-        # Read the response data
-        data = response.read().decode('utf-8')
+        if response.status == 200:
+            # Read the response data
+            data = response.read().decode('utf-8')
+            
+            # Parse the JSON response into a Python dictionary
+            country_data = json.loads(data)
         
-        # Parse the JSON response into a Python dictionary
-        country_data = json.loads(data)
-    
-        # Extract some interesting data from the dictionary
-        country_name = country_data[0]['name']['common']
-        capital = country_data[0]['capital'][0]
-        population = country_data[0]['population']
-        languages = ', '.join(country_data[0]['languages'])
-    
-        # Print the extracted data in a friendly and informative format
-        print("Country:", country_name)
-        print("Capital:", capital)
-        print("Population:", population)
-        print("Languages:", languages)
-    else:
-        # If the request was unsuccessful, print the status code
-        print("Failed to retrieve data. Status code:", response.status)
+            # Extract some interesting data from the dictionary
+            country_name = country_data[0]['name']['common']
+            capital = country_data[0]['capital'][0]
+            population = country_data[0]['population']
+            languages = ', '.join(country_data[0]['languages'])
+        
+            # Print the extracted data in a friendly and informative format
+            print("Country:", country_name)
+            print("Capital:", capital)
+            print("Population:", population)
+            print("Languages:", languages)
+        else:
+            # If the request was unsuccessful, print the status code
+            print("Failed to retrieve data. Status code:", response.status)
+    except Exception as e:
+        print("An error occurred:", e)
+
     
     # Close the connection
     conn.close()
+    
+  

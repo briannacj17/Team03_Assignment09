@@ -54,7 +54,7 @@ def REST_Countries():
             print("Languages:", languages)
         else:
             # If the request was unsuccessful, print the status code
-            print("Failed to retrieve data. Status code:", response.status)
+            print("Failed to retrieve country. Status code:", response.status)
     except Exception as e:
         print("An error occurred:", e)
 

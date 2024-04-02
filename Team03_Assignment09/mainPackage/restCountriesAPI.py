@@ -61,5 +61,3 @@ def REST_Countries():
     
     # Close the connection
     conn.close()
-    
-  

@@ -9,19 +9,23 @@
 
 import http.client
 import json
+from urllib.parse import quote
 
-def REST_Countries(): 
+def REST_Countries(countryInput=None): 
     '''
-        Connect to a API server
-        @return: The server data about Canada
+        Connect to a API server and retrieve data about the specified country
     '''
     
-    #Take the user input
-    countryInput = input("What country do you wan't to know about? ")
+    if countryInput is None:
+        # If no countryInput is provided, ask the user for input
+        countryInput = input("What country do you want to know about? ")
+
+    # Encode the country name
+    encoded_country_name = quote(countryInput)
 
     # Define the base URL and endpoint
     base_url = "restcountries.com"
-    endpoint = "/v3.1/name/" + countryInput
+    endpoint = f"/v3.1/name/{encoded_country_name}"
     
     # Establish connection to the server
     conn = http.client.HTTPSConnection(base_url)
@@ -33,7 +37,7 @@ def REST_Countries():
     response = conn.getresponse()
     
     try:
-    # Check if the request was successful (status code 200)
+        # Check if the request was successful (status code 200)
         if response.status == 200:
             # Read the response data
             data = response.read().decode('utf-8')
@@ -58,6 +62,5 @@ def REST_Countries():
     except Exception as e:
         print("An error occurred:", e)
 
-    
     # Close the connection
     conn.close()

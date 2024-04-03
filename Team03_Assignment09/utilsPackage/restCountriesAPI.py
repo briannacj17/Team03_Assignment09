@@ -13,7 +13,14 @@ from urllib.parse import quote
 
 def REST_Countries(countryInput=None): 
     '''
-        Connect to a API server and retrieve data about the specified country
+    Connect to a API server and retrieve data about the specified country.
+
+    Parameters:
+    - countryInput (str): The name of the country to retrieve data for. If not provided, the user will be prompted for input.
+
+    Returns:
+    None
+
     '''
     
     if countryInput is None:

@@ -7,13 +7,7 @@
 # Brief Description of the assignment: Research API's and extract interesting data
 # Citations: https://restcountries.com/
 
-from utilsPackage.restCountriesAPI import *
+from utilsPackage.restCountriesAPI import *  # @UnusedWildImport
 
 if __name__ == "__main__":
     REST_Countries()  # Call the function directly to start the query
-
-
-
-    
-    
-    
